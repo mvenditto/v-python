@@ -65,7 +65,6 @@ pub fn C.Py_DECREF(&C.PyObject)
 pub fn C.Py_XDECREF(&C.PyObject)
 
 pub fn C.PyModule_Create(&C.PyModuleDef) &C.PyObject
-pub fn C.PyTuple_Check(&C.PyObject) int
 pub fn C.PyCallable_Check(&C.PyObject) int
 pub fn C.PyErr_PrintEx(int)
 pub fn C.PyErr_Print()
