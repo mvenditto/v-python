@@ -63,11 +63,10 @@ pub fn C.Py_INCREF(&C.PyObject)
 pub fn C.Py_XINCREF(&C.PyObject)
 pub fn C.Py_DECREF(&C.PyObject)
 pub fn C.Py_XDECREF(&C.PyObject)
+
 pub fn C.PyModule_Create(&C.PyModuleDef) &C.PyObject
 pub fn C.PyTuple_Check(&C.PyObject) int
 pub fn C.PyCallable_Check(&C.PyObject) int
-pub fn C.PyLong_FromLong(value i64) &C.PyObject
-pub fn C.PyLong_AsLong(&C.PyObject) i64
 pub fn C.PyErr_PrintEx(int)
 pub fn C.PyErr_Print()
 pub fn C.PyErr_Occurred() &C.PyObject
@@ -80,14 +79,6 @@ pub fn C.PyImport_ImportModule(&char) &C.PyObject
 pub fn C.PyImport_Import(&C.PyObject) &C.PyObject
 pub fn C.PySys_SetPath(&u16)
 pub fn C.PyObject_GetAttrString(&C.PyObject, &char) &C.PyObject
-
-// tupleobject.h
-pub fn C.PyTuple_New(&C.Py_ssize_t) &C.PyObject
-pub fn C.PyTuple_Size(&C.PyObject) &C.Py_ssize_t
-pub fn C.PyTuple_GetItem(&C.PyObject, &C.Py_ssize_t) &C.PyObject
-pub fn C.PyTuple_SetItem(&C.PyObject, &C.Py_ssize_t, &C.PyObject) int
-pub fn C.PyTuple_GetSlice(&C.PyObject, &C.Py_ssize_t, &C.Py_ssize_t) &C.PyObject
-pub fn C.PyTuple_Pack(&C.Py_ssize_t, ...&&C.PyObject) &C.PyObject
 
 // moduleobject.h
 pub fn C.PyModule_NewObject(&C.PyObject) &C.PyObject
