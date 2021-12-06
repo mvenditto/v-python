@@ -1,0 +1,1 @@
+v -stats -cc gcc -keepc -showcc -cg test $1
