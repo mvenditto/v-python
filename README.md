@@ -44,7 +44,7 @@ pub fn (mod HelloModuleContext) dispatch(m_name string, self &C.PyObject, args &
 ```bash
 >>> import hello
 >>> hello.boring()
-This module was build with: V 0.2.4 105d7fc
+This module was built with: V 0.2.4 105d7fc
 >>>
 ```
 
