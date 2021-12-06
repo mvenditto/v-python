@@ -22,7 +22,6 @@ fn test_bool_check() {
 fn test_bool_from_long() {
 	t := C.PyBool_FromLong(1)
 	f := C.PyBool_FromLong(0)
-	assert voidptr(t) == voidptr(py_true)
-	assert voidptr(f) == voidptr(py_false)
-	// TODO: fix
+	assert_eq(t, py_true)
+	assert_eq(f, py_false)
 }

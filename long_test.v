@@ -18,6 +18,7 @@ fn test_long_check() {
 	l := C.PyLong_FromLong(4242)
 	assert C.PyLong_Check(l) == 1
 	assert C.PyLong_CheckExact(l) == 1
+	C.Py_XDECREF(l)
 }
 
 fn test_long_from_long() {
