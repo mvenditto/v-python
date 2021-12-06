@@ -63,14 +63,15 @@ pub fn C.Py_INCREF(&C.PyObject)
 pub fn C.Py_XINCREF(&C.PyObject)
 pub fn C.Py_DECREF(&C.PyObject)
 pub fn C.Py_XDECREF(&C.PyObject)
-
 pub fn C.PyModule_Create(&C.PyModuleDef) &C.PyObject
+pub fn C.PyTuple_Check(&C.PyObject) int
 pub fn C.PyCallable_Check(&C.PyObject) int
 pub fn C.PyErr_PrintEx(int)
 pub fn C.PyErr_Print()
 pub fn C.PyErr_Occurred() &C.PyObject
 
 // misc
+pub fn C.PyUnicode_FromString(&char) &C.PyObject
 pub fn C.PyUnicode_AsUTF8(&C.PyObject) &char
 pub fn C.PyUnicode_DecodeLocaleAndSize(&char, &C.Py_ssize_t, &char) &C.PyObject
 pub fn C.PyUnicode_DecodeFSDefault(&char) &C.PyObject
@@ -92,13 +93,6 @@ pub fn C.PyModule_GetState(&C.PyObject) &C.void
 pub fn C.PyModuleDef_Init(&C.struct) &C.PyObject
 
 // modsupport.h
-pub fn C.PyArg_Parse(&C.PyObject, &char, ...&&C.PyObject) int
-pub fn C.PyArg_ParseTuple(&C.PyObject, &char, ...&&C.PyObject) int
-pub fn C.PyArg_ParseTupleAndKeywords(&C.PyObject, &C.PyObject, &char, &char, ...&&C.PyObject) int
-pub fn C.PyArg_VaParse(&C.PyObject, &char, &C.va_list) &int
-pub fn C.PyArg_VaParseTupleAndKeywords(&C.PyObject, &C.PyObject, &char, &char, &C.va_list) int
-pub fn C.PyArg_ValidateKeywordArguments(&C.PyObject) &int
-pub fn C.PyArg_UnpackTuple(&C.PyObject, &char, &C.Py_ssize_t, &C.Py_ssize_t, ...&&C.PyObject) int
 pub fn C.Py_BuildValue(&char, ...&&C.PyObject) &C.PyObject
 pub fn C.Py_VaBuildValue(&char, &C.va_list) &C.PyObject
 pub fn C.PyModule_AddObjectRef(&C.PyObject, &char, &C.PyObject) int
