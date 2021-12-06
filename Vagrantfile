@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
 				
      wget https://github.com/vlang/v/releases/latest/download/v_linux.zip
 		 unzip v_linux.zip
-		 sudo chmod -R 777 /home/vagrant/v/
-		 echo "export PATH=$PATH:/home/vagrant/v/" >> /home/vagrant/.bashrc 
+		 sudo chmod -R 777 /home/vagrant/vlang_l/
+		 echo "export PATH=$PATH:/home/vagrant/vlang_l/v" >> /home/vagrant/.bashrc 
   SHELL
 	
 end
