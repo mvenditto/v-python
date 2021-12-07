@@ -1,11 +1,7 @@
 module py
 
-#flag -I/usr/include/python3.9
-#flag -O0
-
 #define PY_SSIZE_T_CLEAN
 #include "Python.h"
-
 
 pub struct C.PyFrameObject { }
 
