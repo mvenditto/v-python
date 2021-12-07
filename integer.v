@@ -21,7 +21,7 @@ pub fn C.PyLong_AsSsize_t(&C.PyObject) &C.Py_ssize_t
 pub fn C.PyLong_AsSize_t(&C.PyObject) &C.size_t
 pub fn C.PyLong_AsUnsignedLong(&C.PyObject) u32
 pub fn C.PyLong_AsUnsignedLongMask(&C.PyObject) u32
-pub fn C.PyLong_GetInfo(voidptr) &C.PyObject
+pub fn C.PyLong_GetInfo() &C.PyObject
 pub fn C.PyLong_AsDouble(&C.PyObject) f64
 pub fn C.PyLong_FromVoidPtr(voidptr) &C.PyObject
 pub fn C.PyLong_AsVoidPtr(&C.PyObject) voidptr
