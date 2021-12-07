@@ -1,4 +1,4 @@
-# Python/C api in v for modules development and embedding
+# Python/C api in v for modules development and embedding [![ci](https://github.com/mvenditto/v-python/actions/workflows/main.yml/badge.svg)](https://github.com/mvenditto/v-python/actions/workflows/main.yml)
 ## Example structure of a Python module written in vlang (WIP)
 ```v
 
