@@ -1,5 +1,5 @@
 # Python/C api in v for modules development and embedding</br> 
-[![ci](https://github.com/mvenditto/v-python/actions/workflows/main.yml/badge.svg)](https://github.com/mvenditto/v-python/actions/workflows/main.yml)
+[![ci](https://github.com/mvenditto/v-python/actions/workflows/main.yml/badge.svg)](https://github.com/mvenditto/v-python/actions/workflows/main.yml) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mvenditto/4a5aafa6640cf68e738697dcc693810d/raw/vpy_badge_pyhexver.json)
 ## Example structure of a Python module written in vlang (WIP)
 ```v
 
