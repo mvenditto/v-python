@@ -32,7 +32,7 @@ jobs:
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
-          auth: ${{ secrets.v_python_gist }}
+          auth: ${{ secrets.GIST_SECRET }}
           gistID: 4a5aafa6640cf68e738697dcc693810d
           filename: vpy_badge_pyhexver.json
           label: Python
