@@ -29,8 +29,8 @@ fn test_list_get_set() {
 	C.PyList_SetItem(t, 1, set_1)
 	get_0 := C.PyList_GetItem(t, 0)
 	get_1 := C.PyList_GetItem(t, 1)
-	assert_eq(get_0, set_0)
-	assert_eq(get_1, set_1)
+	assert get_0.ptr() == set_0.ptr()
+	assert get_1.ptr() == set_1.ptr()
 	C.Py_XDECREF(t)
 }
 
@@ -85,7 +85,7 @@ fn test_list_set_slice() {
 	for i in 3..6 {
 		x := C.PyList_GetItem(l_a, i)
 		assert C.PyBool_Check(x) == 1
-		assert_eq(x, py_false)
+		assert x.ptr() == py_false.ptr()
 	}
 
 	assert C.PyList_SetSlice(l_a, 3, 6, l_b) == 0
@@ -93,7 +93,7 @@ fn test_list_set_slice() {
 	for i in 3..6 {
 		x := C.PyList_GetItem(l_a, i)
 		assert C.PyBool_Check(x) == 1
-		assert_eq(x, py_true)
+		assert x.ptr() == py_true.ptr()
 	}
 
 	C.Py_DECREF(l_a)

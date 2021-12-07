@@ -32,9 +32,9 @@ fn test_arg_parse_tuple() {
 	assert C.PyLong_Check(y) == 1
 	assert C.PyBool_Check(z) == 1
 
-	assert_eq(x, py_false)
+	assert x.ptr() == py_false.ptr()
 	assert C.PyLong_AsLong(y) == 42
-	assert_eq(z, py_true)
+	assert z.ptr() == py_true.ptr()
 
 	C.Py_XDECREF(args) 
 }

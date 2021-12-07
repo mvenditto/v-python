@@ -44,6 +44,6 @@ fn test_float_min_max() {
 
 fn test_float_get_info() {
 	info := C.PyFloat_GetInfo()
-	assert_neq(info, C.NULL)
+	assert info.ptr() != C.NULL
 }
 

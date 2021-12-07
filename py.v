@@ -15,6 +15,11 @@ pub struct C.Py_ssize_t { }
 
 pub struct C.PyObject {}
 
+[inline]
+pub fn (po &C.PyObject) ptr() voidptr {
+	return voidptr(po)
+}
+
 pub type PyFunc = fn(&C.PyObject, &C.PyObject) &C.PyObject
 pub type PyFuncWithKwargs = fn(&C.PyObject, &C.PyObject, &C.PyObject) &C.PyObject
 

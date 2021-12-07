@@ -29,8 +29,8 @@ fn test_tuple_get_set() {
 	C.PyTuple_SetItem(t, 1, set_1)
 	get_0 := C.PyTuple_GetItem(t, 0)
 	get_1 := C.PyTuple_GetItem(t, 1)
-	assert_eq(get_0, set_0)
-	assert_eq(get_1, set_1)
+	assert get_0.ptr() == set_0.ptr()
+	assert get_1.ptr() == set_1.ptr()
 	C.Py_XDECREF(t)
 }
 
