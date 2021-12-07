@@ -34,3 +34,16 @@ fn test_float_from_unicode() {
 	C.Py_DECREF(f)
 	C.Py_DECREF(s)
 }
+
+fn test_float_min_max() {
+	f_min := C.PyFloat_GetMin()
+	f_max := C.PyFloat_GetMax()
+	assert f_max == math.max_f64
+	assert f_min == 2.2250738585072014e-308
+}
+
+fn test_float_get_info() {
+	info := C.PyFloat_GetInfo()
+	assert_neq(info, C.NULL)
+}
+
