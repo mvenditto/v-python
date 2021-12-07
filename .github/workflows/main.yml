@@ -26,4 +26,4 @@ jobs:
       - name: Set ldflags
         run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
       - name: Run tests
-        run: v -cc gcc test ../.
+        run: v -cc gcc test py
