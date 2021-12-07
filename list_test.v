@@ -34,7 +34,7 @@ fn test_list_get_set() {
 	C.Py_XDECREF(t)
 }
 
-fn test_list_slice() {
+fn test_list_get_slice() {
 	t := C.PyList_New(3)
 
 	items := [
@@ -59,4 +59,43 @@ fn test_list_slice() {
 	C.Py_XDECREF(first)
 	C.Py_XDECREF(s)
 	C.Py_XDECREF(t)
+}
+
+fn test_list_set_slice() {
+	// l_a = [0,] * 9
+	// l_b = [1,] * 3
+	// l_a[3, 6] == [0, 0, 0] : True
+	// l_a[3, 6] = l_b
+	// l_a[3, 6] == [1, 1, 1] : True
+	
+	l_a := C.PyList_New(9)
+	l_b := C.PyList_New(3)
+
+
+	for i in 0..9 {
+		f := C.PyBool_FromLong(0)
+		C.PyList_SetItem(l_a, i, f)
+	}
+
+	for i in 0..3 {
+		t := C.PyBool_FromLong(1)
+		C.PyList_SetItem(l_b, i, t)
+	}
+
+	for i in 3..6 {
+		x := C.PyList_GetItem(l_a, i)
+		assert C.PyBool_Check(x) == 1
+		assert_eq(x, py_false)
+	}
+
+	assert C.PyList_SetSlice(l_a, 3, 6, l_b) == 0
+
+	for i in 3..6 {
+		x := C.PyList_GetItem(l_a, i)
+		assert C.PyBool_Check(x) == 1
+		assert_eq(x, py_true)
+	}
+
+	C.Py_DECREF(l_a)
+	C.Py_DECREF(l_b)
 }
