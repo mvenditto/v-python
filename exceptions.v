@@ -74,6 +74,25 @@ pub fn C.PyExceptionInstance_Check(&C.PyObject) int
 pub fn C.PyExceptionInstance_Class(&C.PyObject) &C.PyObject
 
 pub fn C.PyException_GetTraceback(&C.PyObject) &C.PyObject
+pub fn C.PyException_GetCause(&C.PyObject) &C.PyObject
+pub fn C.PyException_GetContext(&C.PyObject) &C.PyObject
+pub fn C.PyException_SetTraceback(&C.PyObject, &C.PyObject) int
 pub fn C.PyException_SetCause(&C.PyObject, &C.PyObject) 
 pub fn C.PyException_SetContext(&C.PyObject, &C.PyObject) 
+
 pub fn C.PyExceptionClass_Name(&C.PyObject) &char
+pub fn C.PyUnicodeDecodeError_GetEncoding(&C.PyObject) &C.PyObject
+pub fn C.PyUnicodeDecodeError_GetObject(&C.PyObject) &C.PyObject
+pub fn C.PyUnicodeTranslateError_GetObject(&C.PyObject) &C.PyObject
+pub fn C.PyUnicodeDecodeError_GetStart(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeTranslateError_GetStart(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeDecodeError_SetStart(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeTranslateError_SetStart(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeDecodeError_GetEnd(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeTranslateError_GetEnd(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeDecodeError_SetEnd(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeTranslateError_SetEnd(&C.PyObject, &C.Py_ssize_t) int
+pub fn C.PyUnicodeDecodeError_GetReason(&C.PyObject) &C.PyObject
+pub fn C.PyUnicodeTranslateError_GetReason(&C.PyObject) &C.PyObject
+pub fn C.PyUnicodeDecodeError_SetReason(&C.PyObject, &char) int
+pub fn C.PyUnicodeTranslateError_SetReason(&C.PyObject, &char) int
