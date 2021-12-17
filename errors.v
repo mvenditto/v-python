@@ -22,6 +22,7 @@ pub fn C.PyErr_Format(&C.PyObject, &char, ) &C.PyObject
 pub fn C.PyErr_FormatV(&C.PyObject, &char, &C.va_list) &C.PyObject
 pub fn C.PyErr_SetImportErrorSubclass(&C.PyObject, &C.PyObject, &C.PyObject, &C.PyObject) &C.PyObject
 pub fn C.PyErr_SetImportError(&C.PyObject, &C.PyObject, &C.PyObject) &C.PyObject
+pub fn C.PyErr_NewException(&char, &C.PyObject, &C.PyObject) &C.PyObject
 pub fn C.PyErr_NewExceptionWithDoc(&char, &char, &C.PyObject, &C.PyObject) &C.PyObject
 pub fn C.PyErr_WriteUnraisable(&C.PyObject) 
 pub fn C.PyErr_SetInterrupt() 
