@@ -13,11 +13,19 @@ pub struct C.PyCFunction { }
 [typedef] 
 pub struct C.Py_ssize_t { }
 
-pub struct C.PyObject {}
+pub struct C.PyTypeObject { }
+
+pub struct C.PyObject { }
 
 [inline]
-pub fn (po &C.PyObject) ptr() voidptr {
-	return voidptr(po)
+pub fn (o &C.PyObject) ptr() voidptr {
+	return voidptr(o)
+}
+
+fn (o &C.PyObject) str() string {
+	str_p := C.PyObject_Str(o)
+	str_c := C.PyUnicode_AsUTF8(str_p)
+    return unsafe{cstring_to_vstring(str_c).trim_space()}
 }
 
 pub type PyFunc = fn(&C.PyObject, &C.PyObject) &C.PyObject
@@ -56,8 +64,15 @@ pub fn C.Py_FinalizeEx() int
 
 pub fn C.PyMem_RawFree(voidptr)
 
-// call protocol
+pub fn C.PyObject_Str(&C.PyObject) &C.PyObject
 pub fn C.PyObject_CallObject(&C.PyObject, &C.PyObject) &C.PyObject
+pub fn C.PyObject_CallFunctionObjArgs(&C.PyObject, ...&C.PyObject) &C.PyObject
+pub fn C.PyObject_CallMethodObjArgs(&C.PyObject, &C.PyObject, ...&C.PyObject) &C.PyObject
+pub fn C.PyObject_CallMethod(&C.PyObject, &char, &char, ...&C.PyObject) &C.PyObject
+pub fn C.PyObject_IsInstance(&C.PyObject, &C.PyObject) int
+
+pub fn C.PySys_SetObject(&char, &C.PyObject) int
+pub fn C.PySys_GetObject(&char) &C.PyObject
 
 // macros
 pub fn C.Py_INCREF(&C.PyObject)
@@ -76,6 +91,7 @@ pub fn C.PyUnicode_FromString(&char) &C.PyObject
 pub fn C.PyUnicode_AsUTF8(&C.PyObject) &char
 pub fn C.PyUnicode_DecodeLocaleAndSize(&char, &C.Py_ssize_t, &char) &C.PyObject
 pub fn C.PyUnicode_DecodeFSDefault(&char) &C.PyObject
+pub fn C.PyUnicode_AsEncodedString(&C.PyObject, &char, &char) &C.PyObject
 pub fn C.PyImport_ImportModule(&char) &C.PyObject
 pub fn C.PyImport_Import(&C.PyObject) &C.PyObject
 pub fn C.PySys_SetPath(&u16)
