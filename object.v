@@ -10,6 +10,23 @@ const (
 pub fn C.PyObject_Str(&C.PyObject) &C.PyObject
 pub fn C.PyObject_IsInstance(&C.PyObject, &C.PyObject) int
 pub fn C.PyObject_GetAttrString(&C.PyObject, &char) &C.PyObject
+pub fn C.PyObject_ASCII(&C.PyObject) &C.PyObject
+pub fn C.PyObject_Bytes(&C.PyObject) &C.PyObject
+pub fn C.PyObject_RichCompare(&C.PyObject, &C.PyObject, int) &C.PyObject
+pub fn C.PyObject_RichCompareBool(&C.PyObject, &C.PyObject, int) int
+pub fn C.PyObject_SetAttrString(&C.PyObject, &char, &C.PyObject) int
+pub fn C.PyObject_HasAttrString(&C.PyObject, &char) int
+pub fn C.PyObject_GetAttr(&C.PyObject, &C.PyObject) &C.PyObject
+pub fn C.PyObject_SetAttr(&C.PyObject, &C.PyObject, &C.PyObject) int
+pub fn C.PyObject_HasAttr(&C.PyObject, &C.PyObject) int
+pub fn C.PyObject_SelfIter(&C.PyObject) &C.PyObject
+pub fn C.PyObject_GenericGetAttr(&C.PyObject, &C.PyObject) &C.PyObject
+pub fn C.PyObject_GenericSetAttr(&C.PyObject, &C.PyObject, &C.PyObject) int
+pub fn C.PyObject_GenericSetDict(&C.PyObject, &C.PyObject, &C.void) int
+pub fn C.PyObject_Hash(&C.PyObject) &C.Py_hash_t
+pub fn C.PyObject_HashNotImplemented(&C.PyObject) &C.Py_hash_t
+pub fn C.PyObject_IsTrue(&C.PyObject) int
+pub fn C.PyObject_Not(&C.PyObject) int
 
 // call protcol
 pub fn C.PyObject_CallObject(&C.PyObject, &C.PyObject) &C.PyObject
