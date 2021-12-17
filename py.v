@@ -13,6 +13,7 @@ pub struct C.PyCFunction { }
 [typedef] 
 pub struct C.Py_ssize_t { }
 
+[typedef]
 pub struct C.PyTypeObject { }
 
 pub type PyFunc = fn(&C.PyObject, &C.PyObject) &C.PyObject

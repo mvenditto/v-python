@@ -6,6 +6,16 @@ const (
 	py_not_implemented = &C.PyObject(C.Py_NotImplemented)
 )
 
+// Py_LT, Py_LE, Py_EQ, Py_NE, Py_GT, or Py_GE
+pub enum PyRichCompareOp {
+	lt = C.Py_LT
+	le = C.Py_LE
+	eq = C.Py_EQ
+	ne = C.Py_NE
+	gt = C.Py_GT
+	ge = C.Py_GE 
+}
+
 // object protocol
 pub fn C.PyObject_Str(&C.PyObject) &C.PyObject
 pub fn C.PyObject_IsInstance(&C.PyObject, &C.PyObject) int

@@ -5,6 +5,11 @@ module py
 [typedef]
 pub struct C.PyLongObject { }
 
+
+const (
+	py_long_type = &C.PyObject(&C.PyLong_Type)
+)
+
 // macro
 pub fn C.PyLong_Check(&C.PyObject) int
 pub fn C.PyLong_CheckExact(&C.PyObject) int
