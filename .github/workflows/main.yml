@@ -26,6 +26,8 @@ jobs:
           v up
       - name: Set PY_HEX_VERSION
         run: echo PY_HEX_VERSION="$(python3.9 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
+      - name: Set PY_VERSION
+        run: echo PY_VERSION="$(cut -d' ' -f2 <<< $(python3.9 --version))" >> $GITHUB_ENV
       - name: Set VLANG_VERSION
         run: echo VLANG_VERSION="$(cut -d' ' -f2-3 <<< $(v --version))" >> $GITHUB_ENV
       - name: Set cflags
@@ -41,7 +43,7 @@ jobs:
           gistID: 4a5aafa6640cf68e738697dcc693810d
           filename: vpy_badge_pyhexver.json
           label: Python
-          message: ${{ env.PY_HEX_VERSION }}
+          message: ${{ env.PY_VERSION }}
           color: blue
       - name: Create V version badge
         uses: schneegans/dynamic-badges-action@v1.1.0
