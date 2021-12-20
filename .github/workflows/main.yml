@@ -20,7 +20,9 @@ jobs:
           v-version: latest
         id: v
       - name: Install build deps
-        run: sudo apt-get update -y && sudo apt-get install -y python3-dev python3.9
+        run: |
+          sudo apt-get update -y 
+          sudo apt-get install -y python3-dev python3.9
       - name: Install GCC-11
         uses: egor-tensin/setup-gcc@v1
         with:
@@ -34,7 +36,9 @@ jobs:
       - name: Set ldflags
         run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
       - name: Print GCC version
-        run: gcc --version
+        run: | 
+          gcc --version
+          unset CI
       - name: Run tests
         run: v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
       - name: Create the Badge
