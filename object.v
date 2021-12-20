@@ -59,12 +59,24 @@ pub fn (o &C.PyObject) ptr() voidptr {
 
 fn (o &C.PyObject) str() string {
 	str_p := C.PyObject_Str(o)
-	str_c := C.PyUnicode_AsUTF8(str_p)
-    return unsafe{cstring_to_vstring(str_c).trim_space()}
+	$if py_limited_api {
+		encoded := C.PyUnicode_AsEncodedString(str_p, c'utf-8', c'strict')
+		str_c := C.PyBytes_AsString(encoded)
+		return unsafe{cstring_to_vstring(str_c).trim_space()}
+	} $else {
+		str_c := C.PyUnicode_AsUTF8(str_p)
+    	return unsafe{cstring_to_vstring(str_c).trim_space()}
+	}
 }
 
 fn (o &C.PyObject) repr() string {
 	str_p := C.PyObject_Repr(o)
-	str_c := C.PyUnicode_AsUTF8(str_p)
-    return unsafe{cstring_to_vstring(str_c).trim_space()}
+	$if py_limited_api {
+		encoded := C.PyUnicode_AsEncodedString(str_p, c'utf-8', c'strict')
+		str_c := C.PyBytes_AsString(encoded)
+		return unsafe{cstring_to_vstring(str_c).trim_space()}
+	} $else {
+		str_c := C.PyUnicode_AsUTF8(str_p)
+    	return unsafe{cstring_to_vstring(str_c).trim_space()}
+	}
 }
