@@ -126,13 +126,15 @@ fn test_err_syntax_location_ex() {
 }
 
 fn test_err_syntax_location_obj() {
-	C.PyErr_SetNone(C.PyExc_SyntaxError)
-	filename := C.PyUnicode_FromString(c'test.py')
-	defer { C.Py_DECREF(filename) }
-	C.PyErr_SyntaxLocationObject(filename, 0, 0)
-	assert py_err_occurred() != C.NULL
-	C.PyErr_Clear()
-	assert py_err_occurred() == C.NULL
+	$if !py_limited_api ? {
+		C.PyErr_SetNone(C.PyExc_SyntaxError)
+		filename := C.PyUnicode_FromString(c'test.py')
+		defer { C.Py_DECREF(filename) }
+		C.PyErr_SyntaxLocationObject(filename, 0, 0)
+		assert py_err_occurred() != C.NULL
+		C.PyErr_Clear()
+		assert py_err_occurred() == C.NULL
+	}
 }
 
 fn test_err_ex_matches() {
