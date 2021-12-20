@@ -20,7 +20,9 @@ jobs:
           v-version: latest
         id: v
       - name: Install build deps
-        run: sudo apt-get install -y python3-dev python3.9
+        run: |
+          sudo apt update -y
+          sudo apt-get install -y python3-dev python3.9
       - name: Set PY_HEX_VERSION
         run: echo PY_HEX_VERSION="$(python3 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
       - name: Set cflags
@@ -28,7 +30,7 @@ jobs:
       - name: Set ldflags
         run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
       - name: Run tests
-        run: v -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
+        run: v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
