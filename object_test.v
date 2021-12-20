@@ -12,7 +12,8 @@ fn test_py_obj_str() {
 	v := 42
 	i := C.PyLong_FromLong(v)
 	i_str := C.PyObject_Str(i)
-	str_c := C.PyUnicode_AsUTF8(i_str)
+	encoded := C.PyUnicode_AsEncodedString(i_str, c'utf-8', c'strict')
+	str_c := C.PyBytes_AsString(encoded)
 	s := unsafe{cstring_to_vstring(str_c)}
 	assert s.trim_space() == v.str()
 }
@@ -39,6 +40,20 @@ fn test_py_obj_set_attr_str() {
 	assert a.ptr() == b.ptr()
 	C.PyObject_SetAttrString(os, c'test_attr', C.NULL)
 	assert C.PyObject_GetAttrString(os, c'test_attr').ptr() == C.NULL
+}
+
+fn test_py_obj_has_attr_str() {
+	a := C.PyLong_FromLong(42)
+	assert C.PyObject_HasAttrString(a, c'not_attr_of_a') == 0
+}
+
+fn test_py_obj_repr() {
+	/*x := C.PyRun_SimpleString(c'x = type("MyClass", (object,), {"__repr__": lambda self: "test"})()')
+	assert x.ptr() != C.NULL
+	a := C.PyObject_GetAttrString(x, c'my_attr')
+	assert C.PyLong_Check(a) == 1
+	assert C.PyLong_AsLong(a) == 42
+	*/
 }
 
 fn test_py_obj_rich_comp() {

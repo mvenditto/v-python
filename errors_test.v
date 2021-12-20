@@ -30,11 +30,10 @@ fn py_read_stderr() string {
 	m_truncate := C.PyUnicode_FromString(c'truncate')
 	m_seek := C.PyUnicode_FromString(c'seek')
 	v := C.PyObject_CallMethodObjArgs(stderr, m_getvalue, C.NULL)
-	s := C.PyUnicode_AsUTF8(v)
+	encoded := C.PyUnicode_AsEncodedString(v, c'utf-8', c'strict')
+	s := C.PyBytes_AsString(encoded)
 	r := unsafe{cstring_to_vstring(s)}
-	z := C.PyLong_FromLong(0)
-	C.PyObject_CallMethodObjArgs(stderr, m_truncate, z, C.NULL)
-	C.PyObject_CallMethodObjArgs(stderr, m_seek, z, C.NULL)
+	py_redirect_stderr()
 	return r.trim_space()
 }
 
@@ -100,7 +99,8 @@ fn test_err_print_ex_with_set_sys_last_vars() {
 	assert last_tb.ptr() != C.NULL
 
 	last_t_name := C.PyObject_GetAttrString(last_val_t, c'__name__')
-	t_name := C.PyUnicode_AsUTF8(last_t_name)
+	encoded := C.PyUnicode_AsEncodedString(last_t_name, c'utf-8', c'strict')
+	t_name := C.PyBytes_AsString(encoded)
     exc_name := unsafe{cstring_to_vstring(t_name)}
 
 	e := py_read_stderr()

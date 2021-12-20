@@ -48,6 +48,7 @@ pub fn C.Py_DecodeLocale(&char, C.size_t) voidptr
 pub fn C.Py_SetProgramName(&C.wchar_t)
 pub fn C.Py_Initialize()
 pub fn C.PyRun_SimpleString(&char) int
+pub fn C.PyRun_String(&char, int, &C.PyObject, &C.PyObject) &C.PyObject
 pub fn C.Py_FinalizeEx() int
 
 pub fn C.PyMem_RawFree(voidptr)
@@ -70,12 +71,13 @@ pub fn C.PyErr_Occurred() &C.PyObject
 // misc
 pub fn C.PyUnicode_FromString(&char) &C.PyObject
 pub fn C.PyUnicode_AsUTF8(&C.PyObject) &char
+pub fn C.PyUnicode_AsEncodedString(&C.PyObject, &char, &char) &C.PyObject
 pub fn C.PyUnicode_DecodeLocaleAndSize(&char, &C.Py_ssize_t, &char) &C.PyObject
 pub fn C.PyUnicode_DecodeFSDefault(&char) &C.PyObject
-pub fn C.PyUnicode_AsEncodedString(&C.PyObject, &char, &char) &C.PyObject
 pub fn C.PyImport_ImportModule(&char) &C.PyObject
 pub fn C.PyImport_Import(&C.PyObject) &C.PyObject
 pub fn C.PySys_SetPath(&u16)
+pub fn C.PyBytes_AsString(&C.PyObject) &char
 
 // moduleobject.h
 pub fn C.PyModule_NewObject(&C.PyObject) &C.PyObject
