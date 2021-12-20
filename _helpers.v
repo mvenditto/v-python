@@ -4,7 +4,7 @@ pub fn as_py_obj<T>(value T) &C.PyObject {
 	$if T is int {
 		return C.PyLong_FromLong(value)
 	}
-	panic('cannot wrap type ${typeof(value)} as a PyObject.')
+	panic('cannot wrap type ${typeof(value).name} as a PyObject.')
 }
 
 [inline]
