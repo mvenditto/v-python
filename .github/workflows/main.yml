@@ -25,13 +25,15 @@ jobs:
           sudo apt-get install -y python3.9 python3.9-dev
       - name: Set PY_HEX_VERSION
         run: echo PY_HEX_VERSION="$(python3.9 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
+      - name: Set VLANG_VERSION
+        run: echo VLANG_VERSION="$(cut -d' ' -f2-3 <<< $(v --version))" >> $GITHUB_ENV
       - name: Set cflags
         run: echo CFLAGS="$(python3.9-config --includes) -DPy_LIMITED_API=$PY_HEX_VERSION -Wno-incompatible-pointer-types" >> $GITHUB_ENV
       - name: Set ldflags
         run: echo LDFLAGS="$(python3.9-config --embed --libs)" >> $GITHUB_ENV
       - name: Run tests
         run: v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
-      - name: Create the Badge
+      - name: Create Python version badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
@@ -40,3 +42,12 @@ jobs:
           label: Python
           message: ${{ env.PY_HEX_VERSION }}
           color: blue
+      - name: Create V version badge
+        uses: schneegans/dynamic-badges-action@v1.1.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 4a5aafa6640cf68e738697dcc693810d
+          filename: vpy_badge_vlangver.json
+          label: V
+          message: ${{ env.VLANG_VERSION }}
+          color: purple
