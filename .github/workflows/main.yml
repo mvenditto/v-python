@@ -23,14 +23,14 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt-get install -y python3-dev python3.9
-      - name: Set ENV
-        run: |
-          echo PY_HEX_VERSION="$(python3 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
-          echo CFLAGS="$(pkg-config python3 --cflags-only-I) -Wno-incompatible-pointer-types -DPy_LIMITED_API=$PY_HEX_VERSION" >> $GITHUB_ENV
-          echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
+      - name: Set PY_HEX_VERSION
+        run: echo PY_HEX_VERSION="$(python3 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
+      - name: Set cflags
+        run: echo CFLAGS="$(pkg-config python3 --cflags-only-I) -DPy_LIMITED_API=$PY_HEX_VERSION" >> $GITHUB_ENV
+      - name: Set ldflags
+        run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
       - name: Run tests
-        run: |
-          v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
+        run: v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
