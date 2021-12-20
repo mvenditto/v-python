@@ -26,7 +26,7 @@ jobs:
       - name: Set PY_HEX_VERSION
         run: echo PY_HEX_VERSION="$(python3 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
       - name: Set cflags
-        run: echo CFLAGS="$(pkg-config python3 --cflags-only-I) -DPy_LIMITED_API=$PY_HEX_VERSION" >> $GITHUB_ENV
+        run: echo CFLAGS="$(pkg-config python3 --cflags-only-I) -DPy_LIMITED_API=$PY_HEX_VERSION -Wno-incompatible-pointer-types" >> $GITHUB_ENV
       - name: Set ldflags
         run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
       - name: Run tests
