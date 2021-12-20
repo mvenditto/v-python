@@ -27,8 +27,10 @@ jobs:
         run: echo CFLAGS="$(pkg-config python3 --cflags-only-I) -Wno-error -DPy_LIMITED_API=$PY_HEX_VERSION" >> $GITHUB_ENV
       - name: Set ldflags
         run: echo LDFLAGS="$(pkg-config python3-embed --libs)" >> $GITHUB_ENV
+      - name: Print GCC version
+        run: gcc --version
       - name: Run tests
-        run: v -stats -cg -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
+        run: v -stats -showcc -d py_limited_api -cc gcc test $GITHUB_WORKSPACE/*_test.v
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.1.0
         with:
