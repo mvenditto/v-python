@@ -20,7 +20,7 @@ jobs:
           v-version: latest
         id: v
       - name: Install build deps
-        run: apt-get update -y && sudo apt-get install -y python3-dev python3.9
+        run: sudo apt-get update -y && sudo apt-get install -y python3-dev python3.9
       - name: Set PY_HEX_VERSION
         run: echo PY_HEX_VERSION="$(python3 -c 'import sys; print(hex(sys.hexversion))')" >> $GITHUB_ENV
       - name: Set cflags
